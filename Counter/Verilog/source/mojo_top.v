@@ -28,7 +28,7 @@ reg [7:0] counter;
 assign led[7:0] = counter[7:0];
 
 always @(posedge clk) begin
-  if (btn_state) begin
+  if (btn_up) begin
     counter <= counter + 8'b1;
   end
 end
