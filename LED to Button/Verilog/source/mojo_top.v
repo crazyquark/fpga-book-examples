@@ -6,7 +6,7 @@ module mojo_top(
     // cclk input from AVR, high when AVR is ready
     input cclk,
     // Outputs to the 8 onboard LEDs
-    output[7:0]led,
+    output reg [7:0] led,
     // AVR SPI connections
     output spi_miso,
     input spi_ss,
@@ -21,13 +21,10 @@ module mojo_top(
     );
 
 wire rst = ~rst_n; // make reset active high
-reg led_res;
-
-assign led[7:1] = 7'h0;
-assign led[0] = led_res;
 
 always @(*) begin
-  led_res <= rst;
+  led[7:1] <= 7'h0;
+  led[0] <= rst;
 end
 
 // these signals should be high-z when not used
