@@ -11,7 +11,7 @@ reg [15:0] btn_counter; // counter for debouncing(like a timer)
 
 always @(posedge clk) 
 begin
-  btn_sync_0 <= ~btn;
+  btn_sync_0 <= ~btn; // Inverted logic, active when low
 end
 
 always @(posedge clk) 
