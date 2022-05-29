@@ -20,14 +20,16 @@ module mojo_top(
     input avr_rx_busy // AVR Rx buffer full
     );
 
-wire rst = ~rst_n; // make reset active high
+wire btn_state, btn_up, btn_down;
+btn_debouncer btn_deb(.clk(clk), .btn(rst_n), .btn_state(btn_state), .btn_up(btn_up), .btn_down(btn_down));
+
 reg [7:0] counter;
 
 assign led[7:0] = counter[7:0];
 
 always @(posedge clk) begin
-  if (rst) begin
-    counter <= counter + 1;
+  if (btn_state) begin
+    counter <= counter + 8'b1;
   end
 end
 
